@@ -205,8 +205,8 @@ static let apiKey = "API_KEY" // replace with api key
 # Design Decisions
 
 * Used minimal error View to keep the user informed
+  
 * Used AsyncImage for lazy image loading
-* 
 
 * Custom image caching instead of third-party
   → better control and understanding
