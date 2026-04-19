@@ -17,6 +17,7 @@ manage favorites.
 
 * Pull-to-refresh support (native SwiftUI)
 * Error handling with proper error view
+* Async Images for lazy image loading
 
 
 ## Search
@@ -182,15 +183,20 @@ static let apiKey = "API_KEY" // replace with api key
 * Video playback may behave inconsistently
 * Real device recommended for testing
 
+## 5. UI Rendering
 
+* Currently pagination is not handled as the data list is quite less
+
+  
 # Improvements / Future Enhancements
 
 * Login authentication feature can be added
 * Better retry strategy (exponential backoff)
 * Pagination support for large datasets/lists
 * UI polish:
-
+  
   * skeleton loading
+  * YouTube Player — preload on scroll(good user experience)
   * shimmer effects
 * Localization support
 * Unit testing
@@ -199,6 +205,8 @@ static let apiKey = "API_KEY" // replace with api key
 # Design Decisions
 
 * Used minimal error View to keep the user informed
+* Used AsyncImage for lazy image loading
+* 
 
 * Custom image caching instead of third-party
   → better control and understanding
