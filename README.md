@@ -198,6 +198,7 @@ static let apiKey = "API_KEY" // replace with api key
   * skeleton loading
   * YouTube Player — preload on scroll(good user experience)
   * shimmer effects
+  * Dark Mode Support
 * Localization support
 * Unit testing
 
