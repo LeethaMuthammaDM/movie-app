@@ -12,7 +12,7 @@ import Combine
 class NetworkManager: ObservableObject {
     static let shared = NetworkManager()
     private let monitor = NWPathMonitor()
-    private let queue = DispatchQueue(label: "NetworkMonitor")
+    private let queue = DispatchQueue(label: AppConstants.networkQueueLabel)
     
     @Published var isConnected: Bool = true
     

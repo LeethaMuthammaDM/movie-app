@@ -19,7 +19,7 @@ struct Endpoint {
     }
 }
 
-// MARK: - Factory Methods
+// MARK: - API Endpoints for P0pular, Details and Search
 extension Endpoint {
 
     static func popular() -> Endpoint {
@@ -41,7 +41,7 @@ extension Endpoint {
         )
     }
 
-    // ✅ NEW — Full details with videos + credits
+
     static func fullDetails(movieId: Int) -> Endpoint {
         Endpoint(
             path: "/movie/\(movieId)",

@@ -12,21 +12,23 @@ struct MovieListView: View {
     @StateObject private var viewModel = MovieListViewModel()
     @State private var searchText = ""
     @StateObject private var network = NetworkManager.shared
+    @State private var scrolledMovieID: Int?
 
     var body: some View {
         NavigationStack {
-            VStack {
-                if !network.isConnected {
-                    EmptyStateView(message: AppConstants.offlineMode)
-
-                } else if viewModel.isLoading {
+            Group {
+                switch network.isConnected ? viewModel.viewState : .offline {
+                case .loading:
                     ProgressView()
 
-                } else if viewModel.movies.isEmpty {
-                    EmptyStateView(message: viewModel.errorMessage ?? AppConstants.noResultsFound)
-
-                } else {
+                case .success:
                     movieList
+
+                case .empty(let message):
+                    EmptyStateView(message: message)
+
+                case .offline:
+                    EmptyStateView(message: AppConstants.offlineMessage)
                 }
             }
             .searchable(text: $searchText, prompt: AppConstants.searchPlaceholder)
@@ -59,9 +61,12 @@ struct MovieListView: View {
                         MovieRowView(movie: movie)
                     }
                     .buttonStyle(.plain)
+                    .id(movie.id)
                 }
             }
             .padding()
+            .scrollTargetLayout()
         }
+        .scrollPosition(id: $scrolledMovieID)
     }
 }

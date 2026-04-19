@@ -12,7 +12,7 @@ final class FavoritesManager: ObservableObject {
     
     @Published private(set) var favoriteIds: Set<Int> = []
     
-    private let key = "favorite_movies"
+    private let key = AppConstants.favoritesKey
     
     init() {
         load()

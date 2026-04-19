@@ -13,7 +13,7 @@ final class MovieService {
         let endpoint = Endpoint(
             path: "/movie/popular",
             queryItems: [
-                URLQueryItem(name: "api_key", value: Config.apiKey)
+                URLQueryItem(name: AppConstants.apiKeyLabel, value: Config.apiKey)
             ]
         )
         
@@ -25,8 +25,8 @@ final class MovieService {
         let endpoint = Endpoint(
             path: "/search/movie",
             queryItems: [
-                URLQueryItem(name: "api_key", value: Config.apiKey),
-                URLQueryItem(name: "query", value: query)
+                URLQueryItem(name: AppConstants.apiKeyLabel, value: Config.apiKey),
+                URLQueryItem(name: AppConstants.queryLabel, value: query)
             ]
         )
         
@@ -38,7 +38,7 @@ final class MovieService {
         let endpoint = Endpoint(
             path: "/movie/\(movieId)/videos",
             queryItems: [
-                URLQueryItem(name: "api_key", value: Config.apiKey)
+                URLQueryItem(name: AppConstants.apiKeyLabel, value: Config.apiKey)
             ]
         )
         
