@@ -185,6 +185,7 @@ static let apiKey = "API_KEY" // replace with api key
 
 # Improvements / Future Enhancements
 
+* Login authentication feature can be added
 * Better retry strategy (exponential backoff)
 * Pagination support for large datasets/lists
 * UI polish:
@@ -228,3 +229,10 @@ This project focuses on:
 # References
 
 * TMDB APIs used to build the app
+   * Popular Movies: https://api.themoviedb.org/3/movie/popular?api_key={API_KEY}
+   * Details: https://api.themoviedb.org/3/movie/{movie_id}?
+api_key={API_KEY}
+   * Trailers: https://api.themoviedb.org/3/movie/{movie_id}/videos?
+api_key={API_KEY}
+   * Search Movies: https://api.themoviedb.org/3/search/movie?
+api_key={API_KEY}&query={QUERY}
