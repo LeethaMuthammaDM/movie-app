@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MovieDetailView: View {
     @EnvironmentObject var favoritesManager: FavoritesManager
+    @EnvironmentObject var historyManager: HistoryManager
     @StateObject private var viewModel: MovieDetailViewModel
     @State private var isPlayerLoading = true
     
@@ -72,6 +73,9 @@ struct MovieDetailView: View {
             }
         }
         .navigationTitle(AppConstants.details)
+        .onAppear {
+            historyManager.addToHistory(movie: viewModel.movie)
+        }
         .task {
             await viewModel.load()
         }

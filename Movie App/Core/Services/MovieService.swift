@@ -9,6 +9,17 @@ import Foundation
 
 final class MovieService {
     
+    func fetchMovie(movieId: Int) async throws -> Movie {
+        let endpoint = Endpoint(
+            path: "/movie/\(movieId)",
+            queryItems: [
+                URLQueryItem(name: AppConstants.apiKeyLabel, value: Config.apiKey)
+            ]
+        )
+        
+        return try await APIClient.shared.request(endpoint)
+    }
+    
     func fetchPopular() async throws -> [Movie] {
         let endpoint = Endpoint(
             path: "/movie/popular",
