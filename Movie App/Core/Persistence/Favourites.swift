@@ -12,18 +12,31 @@ final class FavoritesManager: ObservableObject {
     
     @Published private(set) var favoriteIds: Set<Int> = []
     
-    private let key = AppConstants.favoritesKey
+    private let favoritesKey = AppConstants.favoritesKey
     
     init() {
         load()
     }
     
     func toggleFavorite(movieId: Int) {
-        if favoriteIds.contains(movieId) {
-            favoriteIds.remove(movieId)
+        if isFavorite(movieId: movieId) {
+            remove(movieId: movieId)
         } else {
-            favoriteIds.insert(movieId)
+            add(movieId: movieId)
         }
+    }
+    
+    func add(movie: Movie) {
+        add(movieId: movie.id)
+    }
+    
+    private func add(movieId: Int) {
+        favoriteIds.insert(movieId)
+        save()
+    }
+    
+    func remove(movieId: Int) {
+        favoriteIds.remove(movieId)
         save()
     }
     
@@ -31,12 +44,28 @@ final class FavoritesManager: ObservableObject {
         favoriteIds.contains(movieId)
     }
     
+    func getAllFavorites() -> [Int] {
+        Array(favoriteIds)
+    }
+    
+    func addToWatchlist(movie: Movie) {
+        add(movie: movie)
+    }
+    
+    func removeFromWatchlist(movieId: Int) {
+        remove(movieId: movieId)
+    }
+    
+    func isInWatchlist(movieId: Int) -> Bool {
+        isFavorite(movieId: movieId)
+    }
+    
     private func save() {
-        UserDefaults.standard.set(Array(favoriteIds), forKey: key)
+        UserDefaults.standard.set(Array(favoriteIds), forKey: favoritesKey)
     }
     
     private func load() {
-        let ids = UserDefaults.standard.array(forKey: key) as? [Int] ?? []
+        let ids = UserDefaults.standard.array(forKey: favoritesKey) as? [Int] ?? []
         favoriteIds = Set(ids)
     }
 }

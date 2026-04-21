@@ -10,6 +10,8 @@ enum AppConstants {
     
     // MARK: - UserDefaults Keys
     static let favoritesKey = "favorite_movies"
+    static let watchlistKey = "watchlist_movies"
+    static let historyKey = "recently_viewed_movies"
     
     // MARK: - Strings
     static let appTitle = "Movie App"

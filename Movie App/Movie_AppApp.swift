@@ -10,11 +10,25 @@ import SwiftUI
 @main
 struct Movie_AppApp: App {
     @StateObject private var favoritesManager = FavoritesManager()
+    @StateObject private var historyManager = HistoryManager()
     
     var body: some Scene {
         WindowGroup {
-           MovieListView()
+            TabView {
+                MovieListView()
+                    .tabItem {
+                        Label("Movies", systemImage: "film")
+                    }
+                
+                NavigationStack {
+                    WatchlistView()
+                }
+                .tabItem {
+                    Label("Watchlist", systemImage: "heart.fill")
+                }
+            }
                 .environmentObject(favoritesManager)
+                .environmentObject(historyManager)
         }
     }
 }
